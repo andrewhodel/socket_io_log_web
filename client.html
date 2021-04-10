@@ -1,0 +1,28 @@
+<html>
+<head>
+</head>
+
+<body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+const socket = io("ws://:3000");
+
+socket.on("connect", () => {
+  // either with send()
+  //socket.send("Hello!");
+
+});
+
+// handle the event sent with socket.send()
+socket.on("log", data => {
+	var p = document.createElement('p');
+	p.style.margin = '2px';
+	p.innerHTML = data.line;
+	document.body.prepend(p);
+});
+
+</script>
+</body>
+</html>
