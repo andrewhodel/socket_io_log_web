@@ -19,7 +19,19 @@ socket.on("connect", () => {
 socket.on("log", data => {
 	var p = document.createElement('p');
 	p.style.margin = '2px';
-	p.innerHTML = data.line;
+
+	var c = data.line;
+	c = c.replace('\033[1;30m', '<span style="color: black;">');
+	c = c.replace('\033[1;31m', '<span style="color: red;">');
+	c = c.replace('\033[1;32m', '<span style="color: green;">');
+	c = c.replace('\033[1;33m', '<span style="color: yellow;">');
+	c = c.replace('\033[1;34m', '<span style="color: purple;">');
+	c = c.replace('\033[1;35m', '<span style="color: magenta;">');
+	c = c.replace('\033[1;36m', '<span style="color: teal;">');
+	c = c.replace('\033[1;37m', '<span style="color: white;">');
+	c = c.replace('\033[0m', '</span>');
+
+	p.innerHTML = c;
 	document.body.prepend(p);
 });
 
